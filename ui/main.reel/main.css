@@ -1,0 +1,35 @@
+section {
+    padding: 5px;
+}
+
+.objectSourceData {
+    float: left;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+
+.objectName {
+    font-weight: bold;
+}
+
+.myData {
+    display: block;
+}
+
+.frb-expression {
+    clear: both;
+}
+.frb-expression input[type="text"] {
+    width: 100%;
+    font-family: Verdana;
+    font-size: 18pt;
+}
+
+.result {
+    font-size: 14pt;
+}
+
+.expressionList {
+    float: right;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="main.css">
+    <script type="text/montage-serialization">{
+        "owner": {
+            "properties": {
+                "element": {"#": "main"}
+            }
+        },
+
+        "dataList": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "dataList"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.data.toMap().items().map{.{name: ()[0], data: ()[1]}}"}
+            }
+        },
+
+        "jsonConverter": {
+            "prototype": "json-converter"
+        },
+
+        "objectName": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "objectName"}
+            },
+            "bindings": {
+                "value": {"<-": "@dataList.objectAtCurrentIteration.name"}
+            }
+        },
+
+        "objectData": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "objectData"}
+            },
+            "bindings": {
+                "value": {
+                    "<-": "@dataList.objectAtCurrentIteration.data",
+                    "converter": {"@": "jsonConverter"}
+                }
+            }
+        },
+
+        "myObjectData": {
+            "prototype": "matte/ui/textarea.reel",
+            "properties": {
+                "element": {"#": "myObjectData"}
+            },
+            "bindings": {
+                "value": {
+                    "<->": "@owner.myData",
+                    "converter": {"@": "jsonConverter"}
+                }
+            }
+        },
+
+        "frbExpression": {
+            "prototype": "matte/ui/input-text.reel",
+            "properties": {
+                "element": {"#": "frbExpression"}
+            },
+            "bindings": {
+                "value": {"<-": "@expressionList.value"}
+            }
+        },
+
+        "expressionList": {
+            "prototype": "matte/ui/select.reel",
+            "properties": {
+                "element": {"#": "expressionList"},
+                "textPropertyPath": "name",
+                "valuePropertyPath": "expression"
+            },
+            "bindings": {
+                "content": {"<-": "@owner.expressions"},
+                "selectedIndexes": {"<-": "[0]"}
+            }
+        },
+
+        "result": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "result"}
+            }
+        }
+    }</script>
+</head>
+<body>
+    <div data-montage-id="main">
+        <section>
+            <a href="http://documentup.com/montagejs/frb/">FRB Documentation</a>
+        </section>
+        <section class="source-data">
+            <div data-montage-id="dataList">
+                <div class="objectSourceData">
+                    @<span data-montage-id="objectName" class="objectName"></span>
+                    <pre data-montage-id="objectData"></pre>
+                </div>
+            </div>
+            <div class="objectSourceData">
+                @<span class="objectName">myData</span>
+                <textarea data-montage-id="myObjectData" class="myData"></textarea>
+            </div>
+        </section>
+        <section class="frb-expression">
+            <input type="text" data-montage-id="frbExpression">
+        </section>
+        <section class="result">
+            <select data-montage-id="expressionList" multiple="true" class="expressionList">
+            </select>
+            <pre data-montage-id="result"></pre>
+        </section>
+    </div>
+</body>
+</html>
