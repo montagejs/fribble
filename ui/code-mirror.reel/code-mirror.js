@@ -37,6 +37,8 @@ var Montage = require("montage").Montage,
     Component = require("montage/ui/component").Component,
     CodeMirror = require("./codemirror/codemirror.min.js").CodeMirror;
 
+require("./codemirror/frb");
+
 /**
     Description TODO
     @class module:"montage/ui/code-mirror.reel".CodeMirror
