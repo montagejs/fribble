@@ -51,18 +51,20 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
     mode: {value: null},
     _newValue: {value: null},
 
-    prepareForDraw: {
-        value: function() {
+    enterDocument: {
+        value: function(firstTime) {
             var mode = this.mode === "json" ? {name: "javascript", json: true} : this.mode;
 
-            this._codeMirror = CodeMirror(this._element, {
-                mode: mode,
-                tabSize: this.tabSize,
-                indentUnit: this.indentUnit,
-                matchBrackets: this.matchBracket,
-                lineNumbers: this.lineNumbers,
-                value: this.value
-            });
+            if (firstTime) {
+                this._codeMirror = CodeMirror(this._element, {
+                    mode: mode,
+                    tabSize: this.tabSize,
+                    indentUnit: this.indentUnit,
+                    matchBrackets: this.matchBracket,
+                    lineNumbers: this.lineNumbers,
+                    value: this.value
+                });
+            }
         }
     },
 
