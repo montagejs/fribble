@@ -61,6 +61,7 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
     matchBrackets: {value: false},
     lineNumbers: {value: false},
     mode: {value: null},
+    autoFormat: {value: false},
     _newValue: {value: null},
 
     enterDocument: {
@@ -85,6 +86,9 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
             if (this._newValue != null) {
                 this._codeMirror.setValue(this._newValue);
                 this._newValue = null;
+                if (this.autoFormat) {
+                    this.reformat();
+                }
             }
         }
     },
@@ -115,6 +119,7 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
             var end = {line: lineCount-1, ch: textEnd};
 
             codeMirror.autoFormatRange(start, end);
+            codeMirror.setSelection({line: 0, ch: 0});
         }
     }
 });
