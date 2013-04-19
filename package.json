@@ -1,5 +1,5 @@
 {
-    "name": "frb-fiddle",
+    "name": "fribble",
     "version": "0.0.0",
     "dependencies": {
         "montage": "0.13.0-alpha",
