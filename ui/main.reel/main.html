@@ -10,6 +10,17 @@
             }
         },
 
+        "save": {
+            "prototype": "matte/ui/button.reel",
+            "properties": {
+                "element": {"#": "save"}
+            },
+            "listeners": [{
+                "type": "action",
+                "listener": {"@": "owner"}
+            }]
+        },
+
         "dataList": {
             "prototype": "montage/ui/repetition.reel",
             "properties": {
@@ -86,8 +97,7 @@
                 "valuePropertyPath": "expression"
             },
             "bindings": {
-                "content": {"<-": "@owner.expressions"},
-                "selectedIndexes": {"<-": "[0]"}
+                "content": {"<-": "@owner.expressions"}
             }
         },
 
@@ -124,6 +134,7 @@
     <div data-montage-id="main">
         <section>
             <a href="http://documentup.com/montagejs/frb/">FRB Documentation</a>
+            <button data-montage-id="save">Save</button>
         </section>
         <section>
             <div data-montage-id="dataList">

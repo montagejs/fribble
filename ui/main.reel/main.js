@@ -1,5 +1,6 @@
 var Montage = require("montage").Montage,
-    Component = require("montage/ui/component").Component;
+    Component = require("montage/ui/component").Component,
+    gist = require("lib/gist").gist;
 
 exports.Main = Montage.create(Component, {
     templateDidLoad: {
@@ -29,15 +30,25 @@ exports.Main = Montage.create(Component, {
                     }
                 });
 
+                window.addEventListener("hashchange", this, false);
                 // Use input if any
-                var hash = document.location.hash;
-
-                if (hash && hash.slice(0, 3) === "#!/") {
-                    objects.frbExpression.value = decodeURIComponent(hash.slice(3));
+                var gistId = location.hash.slice(3);
+                if (gistId) {
+                    this.loadGist(gistId);
+                } else {
+                    this.loadExample(0);
                 }
             }
         }
     },
+
+    loadExample: {
+        value: function(ix) {
+            this.templateObjects.expressionList.selectedIndexes = [ix];
+        }
+    },
+
+    /** Data **/
 
     data: {
         value: {
@@ -64,5 +75,103 @@ exports.Main = Montage.create(Component, {
             "name": "Extract last name from @table",
             "expression": "@table.map{lastName}"
         }]
+    },
+
+    /** Listeners **/
+
+    handleSaveAction: {
+        value: function() {
+            this.save();
+        }
+    },
+
+    handleHashchange: {
+        value: function() {
+            var gistId = location.hash.slice(3);
+
+            if (gistId && gist.id != gistId) {
+                this.loadGist(gistId);
+            }
+        }
+    },
+
+    /** Save **/
+
+    save: {
+        value: function() {
+            var files = this._getFiddleFiles();
+
+            gist.save({
+                anon: true,
+                files: files
+            });
+        }
+    },
+
+    _getFiddleFiles: {
+        value: function() {
+            var files = Object.create(null),
+                data;
+
+            function addFile(fileName, content) {
+                files[fileName] = {content: content};
+            }
+
+            addFile("settings.json", JSON.stringify({
+                autoFormat: this.templateObjects.autoFormat.checked
+            }, null, 4));
+
+            data = Object.clone(this.data);
+            data.myData = this.myData;
+            addFile("data.json", JSON.stringify(data, null, 4));
+
+            addFile("expression.frb", this.templateObjects.frbCodeMirror.value);
+
+            return files;
+        }
+    },
+
+    /** Load **/
+
+    loadGist: {
+        value: function(id) {
+            var self = this;
+
+            gist.load(id).then(function(files) {
+                self._loadFiddleFiles(files);
+            }).done();
+        }
+    },
+
+    _loadFiddleFiles: {
+        value: function(files) {
+            var settings,
+                data,
+                expression,
+                frbExpression = this.templateObjects.frbExpression;
+
+            settings = files["settings.json"] && files["settings.json"].content;
+            if (settings) {
+                settings = JSON.parse(settings);
+                this.templateObjects.autoFormat.checked = settings.autoFormat;
+            }
+
+            data = files["data.json"] && files["data.json"].content;
+            if (data) {
+                data = JSON.parse(data);
+                this.myData = data.myData;
+                delete data.myData;
+                this.data = data;
+            }
+
+            expression = files["expression.frb"] && files["expression.frb"].content;
+            this.templateObjects.frbCodeMirror.setValueAsIs(expression || "");
+
+            // Force expression evaluation through the new data. If the
+            // loaded expression is the same as the current expression just
+            // setting the new data will not trigger the re-evaluation so we
+            // force it.
+            frbExpression.dispatchOwnPropertyChange("data", frbExpression.data);
+        }
     }
 });
