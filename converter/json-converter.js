@@ -22,7 +22,11 @@ exports.JsonConverter = Montage.create(Converter, {
 
     revert: {
         value: function(value) {
-            return JSON.parse(value);
+            try {
+                return JSON.parse(value);
+            } catch (ex) {
+                return value;
+            }
         }
     }
 });
