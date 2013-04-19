@@ -91,7 +91,11 @@
             }
         },
 
-        "codeMirror": {
+        "singlelineConverter": {
+            "prototype": "converter/singleline-converter"
+        },
+
+        "frbCodeMirror": {
             "prototype": "ui/code-mirror.reel",
             "properties": {
                 "element": {"#": "codeMirror"},
@@ -100,7 +104,10 @@
                 "lineNumbers": true
             },
             "bindings": {
-                "value": {"<-": "@frbExpression.value"},
+                "value": {
+                    "<->": "@frbExpression.value",
+                    "converter": {"@": "singlelineConverter"}
+                },
                 "autoFormat": {"<-": "@autoFormat.checked"}
             }
         },
