@@ -56,13 +56,15 @@ require("./codemirror/formatting");
 */
 exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/code-mirror.reel".CodeMirror# */ {
     _codeMirror: {value: null},
+    _newValue: {value: null},
+    _drawAsIs: {value: false},
+    /** Options **/
     tabSize: {value: 4},
     indentUnit: {value: 4},
     matchBrackets: {value: false},
     lineNumbers: {value: false},
     mode: {value: null},
     autoFormat: {value: false},
-    _newValue: {value: null},
 
     enterDocument: {
         value: function(firstTime) {
@@ -80,7 +82,7 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
                     indentUnit: this.indentUnit,
                     matchBrackets: this.matchBracket,
                     lineNumbers: this.lineNumbers,
-                    value: this.value
+                    value: this.value || ""
                 });
                 this._codeMirror.on("change", function(codeMirror, change) {
                     self.dispatchOwnPropertyChange("value", codeMirror.getValue());
@@ -94,7 +96,7 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
             if (this._newValue != null) {
                 this._codeMirror.setValue(this._newValue);
                 this._newValue = null;
-                if (this.autoFormat) {
+                if (this.autoFormat && !this._drawAsIs) {
                     this.reformat();
                 }
             }
@@ -107,7 +109,18 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
         },
         set: function(value) {
             this._newValue = value;
+            this._drawAsIs = false;
             this.needsDraw = true;
+        }
+    },
+
+    /**
+     * Set the value ignoring text changing options like auto format.
+     */
+    setValueAsIs: {
+        value: function(value) {
+            this.value = value;
+            this._drawAsIs = true;
         }
     },
 
