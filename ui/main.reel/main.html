@@ -60,6 +60,14 @@
             }
         },
 
+        "autoFormat": {
+            "prototype": "matte/ui/input-checkbox.reel",
+            "properties": {
+                "element": {"#": "autoFormat"},
+                "checked": true
+            }
+        },
+
         "frbExpression": {
             "prototype": "matte/ui/input-text.reel",
             "properties": {
@@ -92,7 +100,8 @@
                 "lineNumbers": true
             },
             "bindings": {
-                "value": {"<-": "@expressionList.value"}
+                "value": {"<-": "@frbExpression.value"},
+                "autoFormat": {"<-": "@autoFormat.checked"}
             }
         },
 
@@ -124,6 +133,8 @@
         <section class="frb-expression">
             <input type="text" data-montage-id="frbExpression">
         </section>
+        <input type="checkbox" data-montage-id="autoFormat" id="format">
+        <label for="format">Auto Format</label>
         <section class="frbEditor">
             <div data-montage-id="codeMirror"></div>
         </section>
