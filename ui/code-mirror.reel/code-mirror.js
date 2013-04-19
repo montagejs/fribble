@@ -33,6 +33,15 @@ POSSIBILITY OF SUCH DAMAGE.
     @requires montage
     @requires montage/ui/component
 */
+
+/**
+ * codemirror.min.js file is generated from http://codemirror.net/doc/compress.html
+ * With the options: css, htmlembedded, htmlmixed, javascript, xml,
+ * matchbrackets, closebrackets, show-hint, lint
+ * When generating this file it is needed to replace "window.CodeMirror=" with
+ * "var CodeMirror;exports.CodeMirror=CodeMirror="
+ */
+
 var Montage = require("montage").Montage,
     Component = require("montage/ui/component").Component,
     CodeMirror = require("./codemirror/codemirror.min.js").CodeMirror;
