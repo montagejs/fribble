@@ -33,3 +33,8 @@ section {
 .expressionList {
     float: right;
 }
+
+.frbEditor {
+    border: 1px solid gray;
+    font-size: 18pt;
+}

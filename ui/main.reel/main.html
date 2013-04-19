@@ -83,6 +83,19 @@
             }
         },
 
+        "codeMirror": {
+            "prototype": "ui/code-mirror.reel",
+            "properties": {
+                "element": {"#": "codeMirror"},
+                "mode": "frb",
+                "matchBrackets": true,
+                "lineNumbers": true
+            },
+            "bindings": {
+                "value": {"<-": "@expressionList.value"}
+            }
+        },
+
         "result": {
             "prototype": "montage/ui/text.reel",
             "properties": {
@@ -110,6 +123,9 @@
         </section>
         <section class="frb-expression">
             <input type="text" data-montage-id="frbExpression">
+        </section>
+        <section class="frbEditor">
+            <div data-montage-id="codeMirror"></div>
         </section>
         <section class="result">
             <select data-montage-id="expressionList" multiple="true" class="expressionList">
