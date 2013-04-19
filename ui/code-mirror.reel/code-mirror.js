@@ -47,6 +47,7 @@ var Montage = require("montage").Montage,
     CodeMirror = require("./codemirror/codemirror.min.js").CodeMirror;
 
 require("./codemirror/frb");
+require("./codemirror/formatting");
 
 /**
     Description TODO
@@ -101,6 +102,19 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
     hasModeErrors: {
         value: function() {
             return !!this._element.querySelector("*[class~='cm-error']");
+        }
+    },
+
+    reformat: {
+        value: function() {
+            var codeMirror = this._codeMirror,
+                lineCount = codeMirror.lineCount();
+
+            var start = {line: 0, ch: 0};
+            var textEnd = codeMirror.getLine(lineCount-1).length;
+            var end = {line: lineCount-1, ch: textEnd};
+
+            codeMirror.autoFormatRange(start, end);
         }
     }
 });
