@@ -98,7 +98,7 @@
         "frbCodeMirror": {
             "prototype": "ui/code-mirror.reel",
             "properties": {
-                "element": {"#": "codeMirror"},
+                "element": {"#": "frbCodeMirror"},
                 "mode": "frb",
                 "matchBrackets": true,
                 "lineNumbers": true
@@ -125,28 +125,28 @@
         <section>
             <a href="http://documentup.com/montagejs/frb/">FRB Documentation</a>
         </section>
-        <section class="source-data">
+        <section>
             <div data-montage-id="dataList">
-                <div class="objectSourceData">
-                    @<span data-montage-id="objectName" class="objectName"></span>
+                <div class="frbfiddle-Main-objectSourceData">
+                    @<span data-montage-id="objectName" class="frbfiddle-Main-objectSourceData-objectName"></span>
                     <pre data-montage-id="objectData"></pre>
                 </div>
             </div>
-            <div class="objectSourceData">
-                @<span class="objectName">myData</span>
-                <textarea data-montage-id="myObjectData" class="myData"></textarea>
+            <div class="frbfiddle-Main-objectSourceData">
+                @<span class="frbfiddle-Main-objectSourceData-objectName">myData</span>
+                <textarea data-montage-id="myObjectData" class="frbfiddle-Main-objectSourceData-myData"></textarea>
             </div>
         </section>
-        <section class="frb-expression">
+        <section class="frbfiddle-Main-objectSourceData-frbExpression">
             <input type="text" data-montage-id="frbExpression">
         </section>
-        <input type="checkbox" data-montage-id="autoFormat" id="format">
-        <label for="format">Auto Format</label>
-        <section class="frbEditor">
-            <div data-montage-id="codeMirror"></div>
+        <section>
+            <input type="checkbox" data-montage-id="autoFormat" id="format">
+            <label for="format">Auto Format</label>
+            <div data-montage-id="frbCodeMirror" class="frbfiddle-Main-frbEditor"></div>
         </section>
-        <section class="result">
-            <select data-montage-id="expressionList" multiple="true" class="expressionList">
+        <section class="frbfiddle-Main-result">
+            <select data-montage-id="expressionList" multiple="multiple" class="frbfiddle-Main-result-expressionList">
             </select>
             <pre data-montage-id="result"></pre>
         </section>

@@ -2,39 +2,40 @@ section {
     padding: 5px;
 }
 
-.objectSourceData {
+.frbfiddle-Main-objectSourceData {
     float: left;
     border: 1px solid black;
     padding: 5px;
     margin: 5px;
 }
 
-.objectName {
+.frbfiddle-Main-objectSourceData-objectName {
     font-weight: bold;
 }
 
-.myData {
+.frbfiddle-Main-objectSourceData-myData {
     display: block;
 }
 
-.frb-expression {
+.frbfiddle-Main-objectSourceData-frbExpression {
     clear: both;
 }
-.frb-expression input[type="text"] {
+
+.frbfiddle-Main-objectSourceData-frbExpression input[type="text"] {
     width: 100%;
     font-family: Verdana;
     font-size: 18pt;
 }
 
-.result {
+.frbfiddle-Main-frbEditor {
+    border: 1px solid gray;
+    font-size: 18pt;
+}
+
+.frbfiddle-Main-result {
     font-size: 14pt;
 }
 
-.expressionList {
+.frbfiddle-Main-result-expressionList {
     float: right;
-}
-
-.frbEditor {
-    border: 1px solid gray;
-    font-size: 18pt;
 }
