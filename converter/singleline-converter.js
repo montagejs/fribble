@@ -10,7 +10,11 @@ exports.SinglelineConverter = Montage.create(Converter, {
 
     revert: {
         value: function(v) {
-            return v.replace(/\n\s*/mg, "");w
+            if (v) {
+                return v.replace(/\n\s*/mg, "");
+            } else {
+                return v;
+            }
         }
     }
 });
