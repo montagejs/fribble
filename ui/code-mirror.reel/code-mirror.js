@@ -62,6 +62,7 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
     tabSize: {value: 4},
     indentUnit: {value: 4},
     matchBrackets: {value: false},
+    autoCloseBrackets: {value: false},
     lineNumbers: {value: false},
     mode: {value: null},
     autoFormat: {value: false},
@@ -80,7 +81,8 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
                     mode: mode,
                     tabSize: this.tabSize,
                     indentUnit: this.indentUnit,
-                    matchBrackets: this.matchBracket,
+                    matchBrackets: this.matchBrackets,
+                    autoCloseBrackets: this.autoCloseBrackets,
                     lineNumbers: this.lineNumbers,
                     value: this.value || ""
                 });
