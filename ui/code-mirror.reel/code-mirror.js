@@ -66,9 +66,14 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
 
     enterDocument: {
         value: function(firstTime) {
-            var mode = this.mode === "json" ? {name: "javascript", json: true} : this.mode;
+            var self = this,
+                mode = this.mode;
 
             if (firstTime) {
+                if (mode === "json") {
+                    mode = {name: "javascript", json: true};
+                }
+
                 this._codeMirror = CodeMirror(this._element, {
                     mode: mode,
                     tabSize: this.tabSize,
@@ -76,6 +81,9 @@ exports.CodeMirror = Montage.create(Component, /** @lends module:"montage/ui/cod
                     matchBrackets: this.matchBracket,
                     lineNumbers: this.lineNumbers,
                     value: this.value
+                });
+                this._codeMirror.on("change", function(codeMirror, change) {
+                    self.dispatchOwnPropertyChange("value", codeMirror.getValue());
                 });
             }
         }
