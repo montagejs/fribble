@@ -98,6 +98,26 @@ exports.Main = Montage.create(Component, {
             }
         }
     },
+    
+    jsonConverterError: {
+        value: function(error) {
+            var templateObjects = this.templateObjects;
+
+            if (error.value === templateObjects.myObjectData.value) {
+                templateObjects.myObjectSourceData.classList.add("frbfiddle-Main-objectSourceData--error");
+            }
+        }
+    },
+
+    jsonConverterSuccess: {
+        value: function(success) {
+            var templateObjects = this.templateObjects;
+
+            if (success.value === templateObjects.myObjectData.value) {
+                templateObjects.myObjectSourceData.classList.remove("frbfiddle-Main-objectSourceData--error");
+            }
+        }
+    },
 
     /** Save **/
 
