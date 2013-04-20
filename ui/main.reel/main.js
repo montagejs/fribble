@@ -66,17 +66,18 @@ exports.Main = Montage.create(Component, {
 
     expressions: {
         value: [{
-            "name": "Create a sub structure out of @table",
-            "expression": "@table.map{.{name: firstName + ' ' + lastName}}"
+            "name": "Extract last name from @table",
+            "expression": "@table.map{lastName}"
         }, {
             "name": "Filter @table by last name: Jane",
             "expression": "@table.filter{lastName == 'Jane'}"
         }, {
-            "name": "Extract last name from @table",
-            "expression": "@table.map{lastName}"
-        }, {
             "name": "Score average",
             "expression": "@table.map{score}.average()"
+
+        }, {
+            "name": "Create a sub structure out of @table",
+            "expression": "@table.map{.{name: firstName + ' ' + lastName}}"
         }]
     },
 
