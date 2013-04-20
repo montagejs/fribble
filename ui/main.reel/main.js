@@ -104,7 +104,7 @@ exports.Main = Montage.create(Component, {
             var templateObjects = this.templateObjects;
 
             if (error.value === templateObjects.myObjectData.value) {
-                templateObjects.myObjectSourceData.classList.add("frbfiddle-Main-objectSourceData--error");
+                templateObjects.myObjectSourceData.classList.add("fribble-Main-objectSourceData--error");
             }
         }
     },
@@ -114,7 +114,7 @@ exports.Main = Montage.create(Component, {
             var templateObjects = this.templateObjects;
 
             if (success.value === templateObjects.myObjectData.value) {
-                templateObjects.myObjectSourceData.classList.remove("frbfiddle-Main-objectSourceData--error");
+                templateObjects.myObjectSourceData.classList.remove("fribble-Main-objectSourceData--error");
             }
         }
     },

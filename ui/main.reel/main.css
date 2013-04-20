@@ -2,45 +2,45 @@ section {
     padding: 5px;
 }
 
-.frbfiddle-Main-objectSourceData {
+.fribble-Main-objectSourceData {
     float: left;
     border: 1px solid black;
     padding: 5px;
     margin: 5px;
 }
 
-.frbfiddle-Main-objectSourceData--error {
+.fribble-Main-objectSourceData--error {
     background-color: red;
 }
 
-.frbfiddle-Main-objectSourceData-objectName {
+.fribble-Main-objectSourceData-objectName {
     font-weight: bold;
 }
 
-.frbfiddle-Main-objectSourceData-myData {
+.fribble-Main-objectSourceData-myData {
     display: block;
 }
 
-.frbfiddle-Main-objectSourceData-frbExpression {
+.fribble-Main-objectSourceData-frbExpression {
     clear: both;
 }
 
-.frbfiddle-Main-objectSourceData-frbExpression input[type="text"] {
+.fribble-Main-objectSourceData-frbExpression input[type="text"] {
     width: 100%;
     font-family: Verdana;
     font-size: 18pt;
 }
 
-.frbfiddle-Main-frbEditor {
+.fribble-Main-frbEditor {
     border: 1px solid gray;
     font-size: 18pt;
 }
 
-.frbfiddle-Main-result {
+.fribble-Main-result {
     font-size: 14pt;
 }
 
-.frbfiddle-Main-expressionList.matte-Select {
+.fribble-Main-expressionList.matte-Select {
     height: 24em;
     float: right;
 }
