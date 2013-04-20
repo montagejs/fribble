@@ -146,7 +146,7 @@ exports.Main = Montage.create(Component, {
             }, null, 4));
 
             data = Object.clone(this.data);
-            data.myData = this.myData;
+            data.myData = this.templateObjects.myObjectData.value;
             addFile("data.json", JSON.stringify(data, null, 4));
 
             addFile("expression.frb", this.templateObjects.frbCodeMirror.value);
@@ -183,7 +183,7 @@ exports.Main = Montage.create(Component, {
             data = files["data.json"] && files["data.json"].content;
             if (data) {
                 data = JSON.parse(data);
-                this.myData = data.myData;
+                this.templateObjects.myObjectData.value = data.myData;
                 delete data.myData;
                 this.data = data;
             }
