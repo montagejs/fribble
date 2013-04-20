@@ -32,7 +32,10 @@
         },
 
         "jsonConverter": {
-            "prototype": "converter/json-converter"
+            "prototype": "converter/json-converter",
+            "properties": {
+                "delegate": {"@": "owner"}
+            }
         },
 
         "objectName": {
@@ -55,6 +58,13 @@
                     "<-": "@dataList.objectAtCurrentIteration.data",
                     "converter": {"@": "jsonConverter"}
                 }
+            }
+        },
+
+        "myObjectSourceData": {
+            "prototype": "matte/ui/dynamic-element.reel",
+            "properties": {
+                "element": {"#": "myObjectSourceData"}
             }
         },
 
@@ -145,7 +155,8 @@
                     <pre data-montage-id="objectData"></pre>
                 </div>
             </div>
-            <div class="frbfiddle-Main-objectSourceData">
+            <div class="frbfiddle-Main-objectSourceData"
+                 data-montage-id="myObjectSourceData">
                 @<span class="frbfiddle-Main-objectSourceData-objectName">myData</span>
                 <textarea data-montage-id="myObjectData" class="frbfiddle-Main-objectSourceData-myData"></textarea>
             </div>

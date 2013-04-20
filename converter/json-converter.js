@@ -6,6 +6,10 @@ exports.JsonConverter = Montage.create(Converter, {
         value: 2
     },
 
+    delegate: {
+        value: null
+    },
+
     convert: {
         value: function(value) {
             if (value && value.exception) {
@@ -23,10 +27,19 @@ exports.JsonConverter = Montage.create(Converter, {
     revert: {
         value: function(value) {
             try {
-                return JSON.parse(value);
+                var object = JSON.parse(value);
+                this.callDelegateMethod("success", {value: value});
+                return object;
             } catch (ex) {
-                return value;
+                this.callDelegateMethod("error", {value: value, error: ex.message});
+                return null;
             }
+        }
+    },
+
+    deserializedFromTemplate: {
+        value: function(owner, label) {
+            this.identifier = label;
         }
     }
 });

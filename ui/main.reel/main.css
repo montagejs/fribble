@@ -9,6 +9,10 @@ section {
     margin: 5px;
 }
 
+.frbfiddle-Main-objectSourceData--error {
+    background-color: red;
+}
+
 .frbfiddle-Main-objectSourceData-objectName {
     font-weight: bold;
 }

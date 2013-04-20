@@ -77,7 +77,7 @@ exports.Main = Montage.create(Component, {
 
         }, {
             "name": "Create a sub structure out of @table",
-            "expression": "@table.map{.{name: firstName + ' ' + lastName}}"
+            "expression": "@table.map{{name: firstName + ' ' + lastName}}"
         }]
     },
 
@@ -95,6 +95,26 @@ exports.Main = Montage.create(Component, {
 
             if (gistId && gist.id != gistId) {
                 this.loadGist(gistId);
+            }
+        }
+    },
+    
+    jsonConverterError: {
+        value: function(error) {
+            var templateObjects = this.templateObjects;
+
+            if (error.value === templateObjects.myObjectData.value) {
+                templateObjects.myObjectSourceData.classList.add("frbfiddle-Main-objectSourceData--error");
+            }
+        }
+    },
+
+    jsonConverterSuccess: {
+        value: function(success) {
+            var templateObjects = this.templateObjects;
+
+            if (success.value === templateObjects.myObjectData.value) {
+                templateObjects.myObjectSourceData.classList.remove("frbfiddle-Main-objectSourceData--error");
             }
         }
     },
@@ -126,7 +146,7 @@ exports.Main = Montage.create(Component, {
             }, null, 4));
 
             data = Object.clone(this.data);
-            data.myData = this.myData;
+            data.myData = this.templateObjects.myObjectData.value;
             addFile("data.json", JSON.stringify(data, null, 4));
 
             addFile("expression.frb", this.templateObjects.frbCodeMirror.value);
@@ -163,7 +183,7 @@ exports.Main = Montage.create(Component, {
             data = files["data.json"] && files["data.json"].content;
             if (data) {
                 data = JSON.parse(data);
-                this.myData = data.myData;
+                this.templateObjects.myObjectData.value = data.myData;
                 delete data.myData;
                 this.data = data;
             }
