@@ -53,8 +53,8 @@ exports.Main = Montage.create(Component, {
     data: {
         value: {
             "table": [
-                {"id": 0, "firstName": "John", "lastName": "Doe", "handle": "john.doe"},
-                {"id": 1, "firstName": "Mary", "lastName": "Jane", "handle": "mary.jane"}
+                {"id": 0, "firstName": "John", "lastName": "Doe", "handle": "john.doe", "score": 6},
+                {"id": 1, "firstName": "Mary", "lastName": "Jane", "handle": "mary.jane", "score": 10}
             ],
             "headers": ["lastName", "handle"]
         }
@@ -74,6 +74,9 @@ exports.Main = Montage.create(Component, {
         }, {
             "name": "Extract last name from @table",
             "expression": "@table.map{lastName}"
+        }, {
+            "name": "Score average",
+            "expression": "@table.map{score}.average()"
         }]
     },
 
