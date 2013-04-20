@@ -36,6 +36,7 @@ section {
     font-size: 14pt;
 }
 
-.frbfiddle-Main-expressionList {
+.frbfiddle-Main-expressionList.matte-Select {
+    height: 24em;
     float: right;
 }
