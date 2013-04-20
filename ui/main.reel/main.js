@@ -77,7 +77,7 @@ exports.Main = Montage.create(Component, {
 
         }, {
             "name": "Create a sub structure out of @table",
-            "expression": "@table.map{.{name: firstName + ' ' + lastName}}"
+            "expression": "@table.map{{name: firstName + ' ' + lastName}}"
         }]
     },
 
