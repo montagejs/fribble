@@ -1,3 +1,7 @@
+/**
+ * Based on http://codemirror.net/mode/clike/clike.js
+ * https://github.com/montagejs/frb/blob/pegjs/grammar.pegjs
+ */
 var CodeMirror = require("./codemirror.min.js").CodeMirror;
 
 CodeMirror.defineMode("frb", function(config/*, parserConfig*/) {
